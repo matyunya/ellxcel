@@ -1,0 +1,92 @@
+version: 1.1
+nodes:
+  wb = createWorkbook()
+  sheet = wb.addWorksheet("My worksheet")
+  $3 = toStore({ wb }, store)
+  buffer = wb.xlsx.writeBuffer()
+  button = require('/sheet.js').button
+  $2 = button({ label: "download", onClick: () => download(buffer) })
+layout:
+[
+  [,
+    {
+      "value": "Empty workbook:"
+    }
+  ],
+  [,
+    {
+      "node": "wb",
+      "expansion": {
+        "vertical": true,
+        "labelsLeft": true,
+        "secondary": false,
+        "labelsTop": false,
+        "height": 8,
+        "width": 1
+      }
+    }
+  ],,,,,,,,,
+  [,
+    {
+      "value": "Add worksheet:"
+    }
+  ],
+  [,
+    {
+      "node": "sheet",
+      "expansion": {
+        "vertical": true,
+        "labelsLeft": true,
+        "secondary": false,
+        "labelsTop": false,
+        "height": 20,
+        "width": 1
+      }
+    }
+  ],,,,,,,,,,,,,,,,,,,,,
+  [,
+    {
+      "value": "Put workbook to store:"
+    }
+  ],
+  [,
+    {
+      "node": "$3"
+    }
+  ],,
+  [,
+    {
+      "value": "To buffer:"
+    }
+  ],
+  [,
+    {
+      "node": "buffer"
+    }
+  ],,
+  [,
+    {
+      "value": "// TODO:"
+    }
+  ],
+  [,
+    {
+      "value": "// Extract headers from CSV"
+    }
+  ],
+  [,
+    {
+      "value": "// wb.addColumns from headers, addRows with CSV data"
+    }
+  ],,,
+  [,
+    {
+      "node": "button"
+    }
+  ],
+  [,
+    {
+      "node": "$2"
+    }
+  ]
+]
